@@ -2,28 +2,28 @@
 # Placeholders provided by shElo: %shelo_elo% and %shelo_elo_formatted%
 # https://docs.advntr.dev/minimessage/format.html
 #
-# Palette: accent gradient #ffb347 -> #ff5f6d, white for values, gray for text,
+# Palette: accent gradient #4498DB -> #82C7FF, white text, dark gray separators,
 # gold for money, yellow for Elo, green/red for gains/losses.
 # A message written as a section (prefix + message) can turn the global prefix off.
 
 # Used by the updater to add new messages automatically.
 config-version: 12
 
-prefix: '<gradient:#ffb347:#ff5f6d><bold>shElo</bold></gradient> <dark_gray>»</dark_gray> '
+prefix: '<b><gradient:#4498DB:#82C7FF>shElo</gradient></b> <dark_gray>»</dark_gray> <white>'
 
-kill: '<green>+<elo> Elo</green> <dark_gray>·</dark_gray> <gold>+$<money></gold> <dark_gray>·</dark_gray> <gray>killed <white><player></white></gray> <dark_gray>(</dark_gray><white>%shelo_elo%</white><dark_gray>)</dark_gray>'
+kill: '<green>+<elo> Elo</green> <dark_gray>·</dark_gray> <gold>+$<money></gold> <dark_gray>·</dark_gray> killed <player> <dark_gray>(</dark_gray>%shelo_elo%<dark_gray>)</dark_gray>'
 kill-broadcast:
   prefix: true
-  message: '<white><killer></white> <gray>killed</gray> <white><victim></white> <dark_gray>(</dark_gray><yellow><killer_elo> Elo</yellow><dark_gray>)</dark_gray>'
+  message: '<killer> killed <victim> <dark_gray>(</dark_gray><yellow><killer_elo> Elo</yellow><dark_gray>)</dark_gray>'
 anti-farm-blocked: '<red>No reward for <white><player></white>: repeated kill. Try again in <white><remaining_seconds>s</white>.</red>'
 anti-farm-reduced: '<yellow>Repeated kill: reward reduced to <white><percentage>%</white>. Cooldown <white><remaining_seconds>s</white>.</yellow>'
-death-player: '<red>-<elo> Elo</red> <dark_gray>·</dark_gray> <gold>-$<money></gold> <dark_gray>·</dark_gray> <gray>killed by <white><killer></white></gray> <dark_gray>(</dark_gray><white>%shelo_elo%</white><dark_gray>)</dark_gray>'
-death-other: '<red>-<elo> Elo</red> <dark_gray>·</dark_gray> <gold>-$<money></gold> <dark_gray>·</dark_gray> <gray>you died</gray> <dark_gray>(</dark_gray><white>%shelo_elo%</white><dark_gray>)</dark_gray>'
+death-player: '<red>-<elo> Elo</red> <dark_gray>·</dark_gray> <gold>-$<money></gold> <dark_gray>·</dark_gray> killed by <killer> <dark_gray>(</dark_gray>%shelo_elo%<dark_gray>)</dark_gray>'
+death-other: '<red>-<elo> Elo</red> <dark_gray>·</dark_gray> <gold>-$<money></gold> <dark_gray>·</dark_gray> you died <dark_gray>(</dark_gray>%shelo_elo%<dark_gray>)</dark_gray>'
 economy-error: '<red>The economy transaction could not be completed. Please contact an administrator.</red>'
 database-error: '<red>The database is currently unavailable. Please try again.</red>'
 
-elo-self: '<gray>Your Elo: <yellow><elo></yellow></gray>'
-elo-other: '<gray><white><player></white>''s Elo: <yellow><elo></yellow></gray>'
+elo-self: 'Your Elo: <yellow><elo></yellow>'
+elo-other: '<player>''s Elo: <yellow><elo></yellow>'
 player-not-found: '<red>Player <white><player></white> was not found.</red>'
 no-permission: '<red>You do not have permission to do that.</red>'
 reload-start: '<yellow>Checking the configuration and opening the new database connection...</yellow>'
@@ -40,25 +40,25 @@ color-threshold-lost: '<red>Your Elo dropped below <white><required_elo></white>
 # Block messages: no prefix on every line, thin divider instead.
 stats-self:
   prefix: false
-  message: '<gradient:#ffb347:#ff5f6d><bold>Your PvP stats</bold></gradient><newline><dark_gray>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬</dark_gray><newline><gray>Peak Elo  <peak_elo_formatted></gray><newline><gray>Kills <green><kills></green>  <dark_gray>·</dark_gray>  Deaths <red><deaths></red>  <dark_gray>·</dark_gray>  K/D <yellow><kd></yellow></gray><newline><gray>Streak <aqua><streak></aqua>  <dark_gray>·</dark_gray>  Best <gold><best_streak></gold></gray>'
+  message: '<b><gradient:#4498DB:#82C7FF>Your PvP stats</gradient></b><newline><dark_gray>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬</dark_gray><newline><white>Peak Elo  <peak_elo_formatted></white><newline><white>Kills <green><kills></green>  <dark_gray>·</dark_gray>  Deaths <red><deaths></red>  <dark_gray>·</dark_gray>  K/D <yellow><kd></yellow></white><newline><white>Streak <aqua><streak></aqua>  <dark_gray>·</dark_gray>  Best <gold><best_streak></gold></white>'
 stats-other:
   prefix: false
-  message: '<gradient:#ffb347:#ff5f6d><bold><player>''s PvP stats</bold></gradient><newline><dark_gray>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬</dark_gray><newline><gray>Peak Elo  <peak_elo_formatted></gray><newline><gray>Kills <green><kills></green>  <dark_gray>·</dark_gray>  Deaths <red><deaths></red>  <dark_gray>·</dark_gray>  K/D <yellow><kd></yellow></gray><newline><gray>Streak <aqua><streak></aqua>  <dark_gray>·</dark_gray>  Best <gold><best_streak></gold></gray>'
-stats-usage: '<gray>Usage: <white>/stats [player]</white></gray>'
+  message: '<b><gradient:#4498DB:#82C7FF><player>''s PvP stats</gradient></b><newline><dark_gray>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬</dark_gray><newline><white>Peak Elo  <peak_elo_formatted></white><newline><white>Kills <green><kills></green>  <dark_gray>·</dark_gray>  Deaths <red><deaths></red>  <dark_gray>·</dark_gray>  K/D <yellow><kd></yellow></white><newline><white>Streak <aqua><streak></aqua>  <dark_gray>·</dark_gray>  Best <gold><best_streak></gold></white>'
+stats-usage: 'Usage: /stats [player]'
 leaderboard-header:
   prefix: false
-  message: '<gradient:#ffb347:#ff5f6d><bold>Elo Leaderboard</bold></gradient> <dark_gray>·</dark_gray> <gray>page <white><page></white>/<pages> <dark_gray>·</dark_gray> <total_players> players</gray><newline><dark_gray>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬</dark_gray>'
+  message: '<b><gradient:#4498DB:#82C7FF>Elo Leaderboard</gradient></b> <dark_gray>·</dark_gray> <white>page <page>/<pages> <dark_gray>·</dark_gray> <total_players> players</white><newline><dark_gray>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬</dark_gray>'
 leaderboard-entry:
   prefix: false
   message: '<rank_formatted> <white><player></white> <dark_gray>-</dark_gray> <elo_formatted> <yellow>Elo</yellow>'
 leaderboard-footer:
   prefix: false
-  message: '<dark_gray>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬</dark_gray><newline><gray>Previous <white>/elo top <previous_page></white>  <dark_gray>·</dark_gray>  Next <white>/elo top <next_page></white></gray>'
+  message: '<dark_gray>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬</dark_gray><newline><white>Previous /elo top <previous_page>  <dark_gray>·</dark_gray>  Next /elo top <next_page></white>'
 leaderboard-empty: '<yellow>The Elo leaderboard is empty.</yellow>'
 leaderboard-invalid-page: '<red>Page <white><page></white> does not exist. Last page: <white><max_page></white>.</red>'
-leaderboard-usage: '<gray>Usage: <white>/elo top [page]</white></gray>'
+leaderboard-usage: 'Usage: /elo top [page]'
 admin-update: '<green>Elo for <white><player></white> was <action>. New Elo: <yellow><new_elo></yellow>.</green>'
 admin-target-update: '<yellow>An administrator changed your Elo. New Elo: <white><new_elo></white>.</yellow>'
 admin-invalid-number: '<red>The Elo value must be a whole number, zero or higher.</red>'
-admin-usage: '<gray>Usage: <white>/elo set|add|remove <player> <value></white> or <white>/elo reset <player></white>.</gray>'
-usage: '<gray>Usage: <white>/elo [player|top|reload|set|add|remove|reset]</white></gray>'
+admin-usage: 'Usage: /elo set|add|remove <player> <value> or /elo reset <player>'
+usage: 'Usage: /elo [player|top|reload|set|add|remove|reset]'

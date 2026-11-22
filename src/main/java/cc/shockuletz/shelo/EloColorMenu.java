@@ -28,7 +28,7 @@ import java.util.Map;
 public final class EloColorMenu implements Listener {
     private final ShEloPlugin plugin;
     private Map<String, MenuColor> colors = Map.of();
-    private String title = "<gold>Elo Colors</gold>";
+    private String title = "<b><gradient:#4498DB:#82C7FF>shElo Colors</gradient></b>";
     private String defaultFormat = "<gray>{elo}</gray>";
     private int size = 27;
     private boolean fillerEnabled;
@@ -46,7 +46,7 @@ public final class EloColorMenu implements Listener {
     public void reload() {
         YamlConfiguration config = YamlConfiguration.loadConfiguration(
                 new File(plugin.getDataFolder(), "menus.yml"));
-        title = config.getString("title", "<gold>Elo Colors</gold>");
+        title = config.getString("title", "<b><gradient:#4498DB:#82C7FF>shElo Colors</gradient></b>");
         defaultFormat = config.getString("default-format", "<gray>{elo}</gray>");
         size = normalizeSize(config.getInt("size", 27));
         fillerEnabled = config.getBoolean("filler.enabled", true);
