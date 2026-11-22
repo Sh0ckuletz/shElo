@@ -96,7 +96,7 @@ public final class StatsCommand implements CommandExecutor, TabCompleter {
         plugin.messages().send(sender, "database-error");
         Throwable cause = error instanceof CompletionException && error.getCause() != null
                 ? error.getCause() : error;
-        plugin.getLogger().severe("Eroare baza de date la comanda /stats: " + cause.getMessage());
+        plugin.getLogger().severe("Database error in /stats command: " + cause.getMessage());
     }
 
     @Nullable

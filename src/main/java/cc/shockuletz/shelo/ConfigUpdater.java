@@ -38,16 +38,16 @@ public final class ConfigUpdater {
             Files.delete(target.toPath());
             plugin.saveResource(resourceName, false);
             int latestVersion = defaults.getInt(VERSION_KEY, 1);
-            plugin.getLogger().warning(resourceName + " era invalid. A fost salvat ca "
-                    + backup.getName() + " si regenerat automat.");
+            plugin.getLogger().warning(resourceName + " was invalid. It was saved as "
+                    + backup.getName() + " and regenerated.");
             return new UpdateResult(true, 0, latestVersion, 0);
         }
 
         int latestVersion = defaults.getInt(VERSION_KEY, 1);
         int currentVersion = current.getInt(VERSION_KEY, 0);
         if (currentVersion > latestVersion) {
-            plugin.getLogger().warning(resourceName + " provine dintr-o versiune mai noua ("
-                    + currentVersion + "). Updaterul nu il va modifica.");
+            plugin.getLogger().warning(resourceName + " comes from a newer version ("
+                    + currentVersion + "). The updater will not modify it.");
             return new UpdateResult(false, currentVersion, latestVersion, 0);
         }
 
@@ -81,22 +81,22 @@ public final class ConfigUpdater {
         current.set(VERSION_KEY, latestVersion);
         copyComments(defaults, current, VERSION_KEY);
         current.save(target);
-        plugin.getLogger().info(resourceName + " actualizat la versiunea " + latestVersion
-                + " (" + addedKeys + " chei noi).");
+        plugin.getLogger().info(resourceName + " updated to version " + latestVersion
+                + " (" + addedKeys + " new keys).");
         return new UpdateResult(true, currentVersion, latestVersion, addedKeys);
     }
 
     private static YamlConfiguration loadDefaults(JavaPlugin plugin, String resourceName) throws IOException {
         try (InputStream stream = plugin.getResource(resourceName)) {
             if (stream == null) {
-                throw new IOException("Resursa " + resourceName + " lipseste din JAR");
+                throw new IOException("Resource " + resourceName + " is missing from the JAR");
             }
             YamlConfiguration defaults = new YamlConfiguration();
             defaults.options().parseComments(true);
             try (InputStreamReader reader = new InputStreamReader(stream, StandardCharsets.UTF_8)) {
                 defaults.load(reader);
             } catch (InvalidConfigurationException exception) {
-                throw new IOException("Resursa implicita " + resourceName + " este invalida", exception);
+                throw new IOException("Default resource " + resourceName + " is invalid", exception);
             }
             return defaults;
         }

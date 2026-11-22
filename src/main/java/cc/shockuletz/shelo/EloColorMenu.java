@@ -28,14 +28,14 @@ import java.util.Map;
 public final class EloColorMenu implements Listener {
     private final ShEloPlugin plugin;
     private Map<String, MenuColor> colors = Map.of();
-    private String title = "<gold>Culori Elo</gold>";
+    private String title = "<gold>Elo Colors</gold>";
     private String defaultFormat = "<gray>{elo}</gray>";
     private int size = 27;
     private boolean fillerEnabled;
     private Material fillerMaterial = Material.GRAY_STAINED_GLASS_PANE;
     private String fillerName = " ";
     private String selectedStatus = "<green>Selectata</green>";
-    private String unlockedStatus = "<yellow>Click pentru selectare</yellow>";
+    private String unlockedStatus = "<yellow>Click to select</yellow>";
     private String lockedStatus = "<red>Blocata</red>";
 
     public EloColorMenu(ShEloPlugin plugin) {
@@ -46,14 +46,14 @@ public final class EloColorMenu implements Listener {
     public void reload() {
         YamlConfiguration config = YamlConfiguration.loadConfiguration(
                 new File(plugin.getDataFolder(), "menus.yml"));
-        title = config.getString("title", "<gold>Culori Elo</gold>");
+        title = config.getString("title", "<gold>Elo Colors</gold>");
         defaultFormat = config.getString("default-format", "<gray>{elo}</gray>");
         size = normalizeSize(config.getInt("size", 27));
         fillerEnabled = config.getBoolean("filler.enabled", true);
         fillerMaterial = material(config.getString("filler.material", "GRAY_STAINED_GLASS_PANE"));
         fillerName = config.getString("filler.name", " ");
         selectedStatus = config.getString("status.selected", "<green>Selectata</green>");
-        unlockedStatus = config.getString("status.unlocked", "<yellow>Click pentru selectare</yellow>");
+        unlockedStatus = config.getString("status.unlocked", "<yellow>Click to select</yellow>");
         lockedStatus = config.getString("status.locked", "<red>Blocata</red>");
 
         Map<String, MenuColor> loaded = new LinkedHashMap<>();
@@ -61,13 +61,13 @@ public final class EloColorMenu implements Listener {
         if (section != null) {
             for (String id : section.getKeys(false)) {
                 if (!id.matches("[A-Za-z0-9_-]{1,64}")) {
-                    plugin.getLogger().warning("ID de culoare invalid in menus.yml: " + id);
+                    plugin.getLogger().warning("Invalid color ID in menus.yml: " + id);
                     continue;
                 }
                 String path = "colors." + id + ".";
                 int slot = config.getInt(path + "slot", -1);
                 if (slot < 0 || slot >= size) {
-                    plugin.getLogger().warning("Slot invalid pentru culoarea " + id + " din menus.yml");
+                    plugin.getLogger().warning("Invalid slot for color " + id + " in menus.yml");
                     continue;
                 }
                 loaded.put(id, new MenuColor(
@@ -98,7 +98,7 @@ public final class EloColorMenu implements Listener {
             }
             if (error != null) {
                 plugin.messages().send(player, "database-error");
-                plugin.getLogger().severe("Meniul de culori nu a putut incarca jucatorul: "
+                plugin.getLogger().severe("The color menu could not load the player: "
                         + error.getMessage());
                 return;
             }
@@ -213,7 +213,7 @@ public final class EloColorMenu implements Listener {
                 .whenComplete((ignored, error) -> plugin.runSync(() -> {
                     if (error != null) {
                         plugin.messages().send(player, "database-error");
-                        plugin.getLogger().severe("Culoarea Elo nu a putut fi salvata: " + error.getMessage());
+                        plugin.getLogger().severe("Could not save the Elo color: " + error.getMessage());
                         return;
                     }
                     plugin.messages().send(player, "color-selected",

@@ -1,36 +1,36 @@
-# Mareste aceasta valoare doar cand structura implicita a configuratiei este actualizata.
+# Only increase this value when the default configuration structure changes.
 config-version: 9
 
-# AUTOMATIC foloseste colors.yml; MENU permite alegerea culorii din /elocolors.
+# AUTOMATIC uses colors.yml; MENU lets players pick a color with /elocolors.
 color-system:
   mode: 'AUTOMATIC'
   notify-on-threshold-loss: true
 
-# In aceste lumi nu se acorda bani/Elo si nu se aplica penalizari.
-# Numele lumilor sunt verificate fara diferenta intre litere mari si mici.
+# No money or Elo is awarded and no penalties apply in these worlds.
+# World names are matched case-insensitively.
 combat:
   disabled-worlds: []
 
-# Numarul de pozitii afisate de /elo top pe fiecare pagina (1-50).
+# Number of entries shown per page by /elo top (1-50).
 leaderboard:
   entries-per-page: 10
 
-# Protectie impotriva kill-urilor repetate pe acelasi jucator.
-# Afecteaza recompensa killerului; penalizarea victimei ramane activa.
+# Protection against repeated kills on the same player.
+# Affects the killer's reward; the victim's penalty still applies.
 anti-farm:
   enabled: true
   cooldown-seconds: 300
-  # BLOCK opreste recompensa; REDUCE acorda procentul de mai jos.
+  # BLOCK withholds the reward; REDUCE grants the percentage below.
   mode: 'BLOCK'
   reduction-percent: 50
 
-# Elo primit de jucatorul care face kill-ul.
+# Reward given to the player who gets the kill.
 kill:
   money: 300.0
   elo: 30
   broadcast: true
 
-# Penalizarea aplicata victimei in lumile active, indiferent de cauza mortii.
+# Penalty applied to the victim in enabled worlds, whatever the cause of death.
 death:
   money: 50.0
   elo: 10
@@ -39,24 +39,24 @@ elo:
   starting-value: 1000
   minimum-value: 0
 
-# Format folosit pentru sumele introduse in mesajele MiniMessage.
+# Format used for amounts inserted into MiniMessage messages.
 money-format: '#,##0.##'
 
 database:
-  # MYSQL necesita un server extern; SQLITE salveaza totul intr-un singur fisier local
-  # in directorul pluginului si nu necesita nicio configurare suplimentara.
+  # MYSQL requires an external server; SQLITE stores everything in a single local file
+  # in the plugin directory and needs no extra setup.
   storage-type: 'MYSQL'
 
-  # Folosit doar cand storage-type este SQLITE. Doar numele fisierului, fara cai.
+  # Only used when storage-type is SQLITE. File name only, no paths.
   sqlite:
     file: 'shelo.db'
 
-  # Urmatoarele chei sunt folosite doar cand storage-type este MYSQL.
+  # The following keys are only used when storage-type is MYSQL.
   host: '127.0.0.1'
   port: 3306
   name: 'minecraft'
   username: 'root'
-  password: 'schimba-ma'
+  password: 'change-me'
   table: 'shelo_players'
   use-ssl: false
   allow-public-key-retrieval: true

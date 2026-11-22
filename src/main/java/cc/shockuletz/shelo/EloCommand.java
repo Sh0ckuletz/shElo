@@ -56,7 +56,7 @@ public final class EloCommand implements CommandExecutor, TabCompleter {
             plugin.reloadPluginAsync().whenComplete((result, error) -> plugin.runSync(() -> {
                 if (error != null) {
                     plugin.messages().send(sender, "reload-error");
-                    plugin.getLogger().severe("Reload-ul asincron a esuat: " + error.getMessage());
+                    plugin.getLogger().severe("Async reload failed: " + error.getMessage());
                     return;
                 }
                 String messageKey = switch (result) {
@@ -232,7 +232,7 @@ public final class EloCommand implements CommandExecutor, TabCompleter {
             case "reset" -> plugin.database().setElo(
                     target.uuid(), target.name(), plugin.settings().startingElo(),
                     plugin.settings().minimumElo());
-            default -> throw new IllegalArgumentException("Actiune Elo necunoscuta: " + action);
+            default -> throw new IllegalArgumentException("Unknown Elo action: " + action);
         };
 
         update.whenComplete((newElo, error) -> plugin.runSync(() -> {
@@ -260,10 +260,10 @@ public final class EloCommand implements CommandExecutor, TabCompleter {
 
     private String actionLabel(String action) {
         return switch (action) {
-            case "set" -> "setat";
-            case "add" -> "adaugat";
-            case "remove" -> "scazut";
-            case "reset" -> "resetat";
+            case "set" -> "set";
+            case "add" -> "increased";
+            case "remove" -> "decreased";
+            case "reset" -> "reset";
             default -> action;
         };
     }
@@ -312,7 +312,7 @@ public final class EloCommand implements CommandExecutor, TabCompleter {
         plugin.messages().send(sender, "database-error");
         Throwable cause = error instanceof CompletionException && error.getCause() != null
                 ? error.getCause() : error;
-        plugin.getLogger().severe("Eroare baza de date la comanda /elo: " + cause.getMessage());
+        plugin.getLogger().severe("Database error in /elo command: " + cause.getMessage());
     }
 
     @Nullable

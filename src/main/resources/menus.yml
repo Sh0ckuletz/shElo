@@ -1,5 +1,5 @@
-# Meniu inspirat de benzile de culoare CS2 Premier Rating.
-# O culoare este disponibila numai cat timp Elo-ul actual indeplineste pragul.
+# Menu inspired by the CS2 Premier Rating color tiers.
+# A color is only available while the current Elo meets its threshold.
 config-version: 2
 
 title: '<gradient:#5e98d9:#ffd700><bold>CS PREMIER RATING</bold></gradient>'
@@ -12,23 +12,23 @@ filler:
   name: '<dark_gray> </dark_gray>'
 
 status:
-  selected: '<green><bold>SELECTAT</bold></green>'
-  unlocked: '<yellow>Click pentru selectare</yellow>'
-  locked: '<red>BLOCAT</red>'
+  selected: '<green><bold>SELECTED</bold></green>'
+  unlocked: '<yellow>Click to select</yellow>'
+  locked: '<red>LOCKED</red>'
 
-# Placeholdere disponibile in name si lore:
-# <required_elo>, <current_elo>, <highest_elo>, <color_id> si <status>
-# format accepta MiniMessage si trebuie sa contina {elo}.
+# Placeholders available in name and lore:
+# <required_elo>, <current_elo>, <highest_elo>, <color_id> and <status>
+# format accepts MiniMessage and must contain {elo}.
 colors:
   gray:
     slot: 10
     required-elo: 0
     material: 'GRAY_DYE'
-    name: '<#b0b0b0><bold>GRI</bold></#b0b0b0> <dark_gray>| 0 - 4,999</dark_gray>'
+    name: '<#b0b0b0><bold>GRAY</bold></#b0b0b0> <dark_gray>| 0 - 4,999</dark_gray>'
     lore:
       - '<dark_gray>Premier Rating Tier</dark_gray>'
-      - '<gray>Rating minim: <white><required_elo></white></gray>'
-      - '<gray>Rating actual: <white><current_elo></white></gray>'
+      - '<gray>Minimum rating:<white><required_elo></white></gray>'
+      - '<gray>Current rating:<white><current_elo></white></gray>'
       - ''
       - '<status>'
     format: '<#b0b0b0><bold>{elo}</bold></#b0b0b0>'
@@ -37,11 +37,11 @@ colors:
     slot: 11
     required-elo: 5000
     material: 'LIGHT_BLUE_DYE'
-    name: '<#5e98d9><bold>BLEU</bold></#5e98d9> <dark_gray>| 5,000 - 9,999</dark_gray>'
+    name: '<#5e98d9><bold>LIGHT BLUE</bold></#5e98d9> <dark_gray>| 5,000 - 9,999</dark_gray>'
     lore:
       - '<dark_gray>Premier Rating Tier</dark_gray>'
-      - '<gray>Rating minim: <white><required_elo></white></gray>'
-      - '<gray>Rating actual: <white><current_elo></white></gray>'
+      - '<gray>Minimum rating:<white><required_elo></white></gray>'
+      - '<gray>Current rating:<white><current_elo></white></gray>'
       - ''
       - '<status>'
     format: '<#5e98d9><bold>{elo}</bold></#5e98d9>'
@@ -50,11 +50,11 @@ colors:
     slot: 12
     required-elo: 10000
     material: 'BLUE_DYE'
-    name: '<#4b69ff><bold>ALBASTRU</bold></#4b69ff> <dark_gray>| 10,000 - 14,999</dark_gray>'
+    name: '<#4b69ff><bold>BLUE</bold></#4b69ff> <dark_gray>| 10,000 - 14,999</dark_gray>'
     lore:
       - '<dark_gray>Premier Rating Tier</dark_gray>'
-      - '<gray>Rating minim: <white><required_elo></white></gray>'
-      - '<gray>Rating actual: <white><current_elo></white></gray>'
+      - '<gray>Minimum rating:<white><required_elo></white></gray>'
+      - '<gray>Current rating:<white><current_elo></white></gray>'
       - ''
       - '<status>'
     format: '<#4b69ff><bold>{elo}</bold></#4b69ff>'
@@ -63,11 +63,11 @@ colors:
     slot: 13
     required-elo: 15000
     material: 'PURPLE_DYE'
-    name: '<#8847ff><bold>MOV</bold></#8847ff> <dark_gray>| 15,000 - 19,999</dark_gray>'
+    name: '<#8847ff><bold>PURPLE</bold></#8847ff> <dark_gray>| 15,000 - 19,999</dark_gray>'
     lore:
       - '<dark_gray>Premier Rating Tier</dark_gray>'
-      - '<gray>Rating minim: <white><required_elo></white></gray>'
-      - '<gray>Rating actual: <white><current_elo></white></gray>'
+      - '<gray>Minimum rating:<white><required_elo></white></gray>'
+      - '<gray>Current rating:<white><current_elo></white></gray>'
       - ''
       - '<status>'
     format: '<#8847ff><bold>{elo}</bold></#8847ff>'
@@ -76,11 +76,11 @@ colors:
     slot: 14
     required-elo: 20000
     material: 'MAGENTA_DYE'
-    name: '<#d32ce6><bold>ROZ</bold></#d32ce6> <dark_gray>| 20,000 - 24,999</dark_gray>'
+    name: '<#d32ce6><bold>PINK</bold></#d32ce6> <dark_gray>| 20,000 - 24,999</dark_gray>'
     lore:
       - '<dark_gray>Premier Rating Tier</dark_gray>'
-      - '<gray>Rating minim: <white><required_elo></white></gray>'
-      - '<gray>Rating actual: <white><current_elo></white></gray>'
+      - '<gray>Minimum rating:<white><required_elo></white></gray>'
+      - '<gray>Current rating:<white><current_elo></white></gray>'
       - ''
       - '<status>'
     format: '<#d32ce6><bold>{elo}</bold></#d32ce6>'
@@ -89,11 +89,11 @@ colors:
     slot: 15
     required-elo: 25000
     material: 'RED_DYE'
-    name: '<#eb4b4b><bold>ROSU</bold></#eb4b4b> <dark_gray>| 25,000 - 29,999</dark_gray>'
+    name: '<#eb4b4b><bold>RED</bold></#eb4b4b> <dark_gray>| 25,000 - 29,999</dark_gray>'
     lore:
       - '<dark_gray>Premier Rating Tier</dark_gray>'
-      - '<gray>Rating minim: <white><required_elo></white></gray>'
-      - '<gray>Rating actual: <white><current_elo></white></gray>'
+      - '<gray>Minimum rating:<white><required_elo></white></gray>'
+      - '<gray>Current rating:<white><current_elo></white></gray>'
       - ''
       - '<status>'
     format: '<#eb4b4b><bold>{elo}</bold></#eb4b4b>'
@@ -102,11 +102,11 @@ colors:
     slot: 16
     required-elo: 30000
     material: 'YELLOW_DYE'
-    name: '<gradient:#f5c542:#ffd700><bold>AURIU</bold></gradient> <dark_gray>| 30,000+</dark_gray>'
+    name: '<gradient:#f5c542:#ffd700><bold>GOLD</bold></gradient> <dark_gray>| 30,000+</dark_gray>'
     lore:
       - '<dark_gray>Premier Rating Tier</dark_gray>'
-      - '<gray>Rating minim: <white><required_elo></white></gray>'
-      - '<gray>Rating actual: <white><current_elo></white></gray>'
+      - '<gray>Minimum rating:<white><required_elo></white></gray>'
+      - '<gray>Current rating:<white><current_elo></white></gray>'
       - ''
       - '<status>'
     format: '<gradient:#f5c542:#ffd700><bold>{elo}</bold></gradient>'

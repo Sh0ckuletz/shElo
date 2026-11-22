@@ -9,7 +9,7 @@ public final class PlaceholderApiHook implements PlaceholderHook {
     public PlaceholderApiHook(ShEloPlugin plugin) {
         expansion = new ShEloExpansion(plugin);
         if (!expansion.register()) {
-            plugin.getLogger().warning("Expansion-ul PlaceholderAPI shelo nu a putut fi inregistrat.");
+            plugin.getLogger().warning("The shelo PlaceholderAPI expansion could not be registered.");
         }
     }
 

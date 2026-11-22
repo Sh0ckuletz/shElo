@@ -21,9 +21,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 /**
- * SQLite pastreaza o singura conexiune in pool (un fisier SQLite are un singur writer),
- * ceea ce serializeaza automat toate operatiile prin acest manager si elimina nevoia
- * locking-ului explicit gen "SELECT ... FOR UPDATE" folosit de varianta MySQL.
+ * SQLite keeps a single connection in the pool (an SQLite file has a single writer),
+ * which serializes all operations through this manager and removes the need for
+ * explicit locking such as the "SELECT ... FOR UPDATE" used by the MySQL variant.
  */
 public final class SqliteEloStorage implements EloStorage {
     private final HikariDataSource dataSource;
@@ -46,7 +46,7 @@ public final class SqliteEloStorage implements EloStorage {
 
         File dataFolder = plugin.getDataFolder();
         if (!dataFolder.exists() && !dataFolder.mkdirs()) {
-            throw new SQLException("Directorul pluginului nu a putut fi creat: " + dataFolder);
+            throw new SQLException("Plugin directory could not be created: " + dataFolder);
         }
         File databaseFile = new File(dataFolder, settings.sqliteFile());
 
@@ -239,7 +239,7 @@ public final class SqliteEloStorage implements EloStorage {
                     select.setString(1, playerId.toString());
                     try (ResultSet result = select.executeQuery()) {
                         if (!result.next()) {
-                            throw new SQLException("Elo-ul jucatorului nu a putut fi actualizat");
+                            throw new SQLException("Player Elo could not be updated");
                         }
                         cachePlayer(playerId, result);
                         return result.getInt("elo");
@@ -273,7 +273,7 @@ public final class SqliteEloStorage implements EloStorage {
                     select.setString(1, playerId.toString());
                     try (ResultSet result = select.executeQuery()) {
                         if (!result.next()) {
-                            throw new SQLException("Jucatorul nu a putut fi initializat");
+                            throw new SQLException("Player could not be initialized");
                         }
                         currentElo = result.getInt("elo");
                         currentHighestElo = result.getInt("highest_elo");
@@ -410,7 +410,7 @@ public final class SqliteEloStorage implements EloStorage {
                     select.setString(1, playerId.toString());
                     try (ResultSet result = select.executeQuery()) {
                         if (!result.next()) {
-                            throw new SQLException("Statisticile jucatorului nu au putut fi initializate");
+                            throw new SQLException("Player stats could not be initialized");
                         }
                         return readStats(result);
                     }
@@ -510,7 +510,7 @@ public final class SqliteEloStorage implements EloStorage {
                 statement.setString(1, colorId);
                 statement.setString(2, playerId.toString());
                 if (statement.executeUpdate() == 0) {
-                    throw new SQLException("Jucatorul nu exista in baza de date");
+                    throw new SQLException("Player does not exist in the database");
                 }
             }
             selectedColorCache.put(playerId, colorId);

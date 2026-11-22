@@ -29,7 +29,7 @@ public final class CombatListener implements Listener {
         Player player = event.getPlayer();
         plugin.database().ensurePlayer(player.getUniqueId(), player.getName(), plugin.settings().startingElo())
                 .exceptionally(error -> {
-                    logDatabaseError("initializarea lui " + player.getName(), error);
+                    logDatabaseError("initialization of " + player.getName(), error);
                     return null;
                 });
     }
@@ -55,7 +55,7 @@ public final class CombatListener implements Listener {
             EconomyResponse deathTransaction = plugin.economy().withdrawPlayer(victim, deathCharge);
             if (!deathTransaction.transactionSuccess()) {
                 deathEconomySuccess = false;
-                notifyEconomyFailure(victim, "penalizarea la moarte", deathTransaction);
+                notifyEconomyFailure(victim, "death penalty", deathTransaction);
             }
         }
         if (deathEconomySuccess) {
@@ -65,7 +65,7 @@ public final class CombatListener implements Listener {
             ).whenComplete((newElo, error) -> plugin.runSync(() -> {
                 if (error != null) {
                     compensateDeathPenalty(victim, deathCharge);
-                    notifyDatabaseFailure(victim, "penalizarea lui " + victim.getName(), error);
+                    notifyDatabaseFailure(victim, "death penalty for " + victim.getName(), error);
                     return;
                 }
                 applyDeathPenalty(victim, killer, previousVictimElo, newElo, deathCharge, settings);
@@ -81,8 +81,8 @@ public final class CombatListener implements Listener {
                 victim.getUniqueId(), victim.getName(),
                 settings.startingElo()
         ).exceptionally(error -> {
-            logDatabaseError("salvarea statisticilor PvP pentru " + killer.getName()
-                    + " si " + victim.getName(), error);
+            logDatabaseError("PvP stats update for " + killer.getName()
+                    + " and " + victim.getName(), error);
             return null;
         });
 
@@ -102,7 +102,7 @@ public final class CombatListener implements Listener {
         int rewardElo = (int) Math.round(settings.killElo() * rewardMultiplier);
         EconomyResponse killTransaction = plugin.economy().depositPlayer(killer, rewardMoney);
         if (!killTransaction.transactionSuccess()) {
-            notifyEconomyFailure(killer, "recompensa pentru kill", killTransaction);
+            notifyEconomyFailure(killer, "kill reward", killTransaction);
             return;
         }
 
@@ -112,7 +112,7 @@ public final class CombatListener implements Listener {
         ).whenComplete((newElo, error) -> plugin.runSync(() -> {
             if (error != null) {
                 compensateKillReward(killer, rewardMoney);
-                notifyDatabaseFailure(killer, "recompensa lui " + killer.getName(), error);
+                notifyDatabaseFailure(killer, "kill reward for " + killer.getName(), error);
                 return;
             }
             applyKillReward(killer, victim, newElo, rewardMoney, rewardElo, antiFarm, settings);
@@ -153,7 +153,7 @@ public final class CombatListener implements Listener {
                 MessageManager.text("money", plugin.formatMoney(chargedMoney)),
                 MessageManager.text("elo", Integer.toString(settings.deathElo())),
                 MessageManager.text("new_elo", Integer.toString(newElo)),
-                MessageManager.text("killer", killer == null ? "Mediu" : killer.getName())
+                MessageManager.text("killer", killer == null ? "Environment" : killer.getName())
         };
         plugin.messages().send(victim, killer == null ? "death-other" : "death-player", placeholders);
         plugin.colorMenu().notifyIfLostAccess(victim, previousElo, newElo);
@@ -195,12 +195,12 @@ public final class CombatListener implements Listener {
             return;
         }
         EconomyResponse response = plugin.economy().depositPlayer(player, amount);
-        notifyCompensationFailure(player, "returnarea penalizarii", response);
+        notifyCompensationFailure(player, "death penalty refund", response);
     }
 
     private void compensateKillReward(Player player, double amount) {
         EconomyResponse response = plugin.economy().withdrawPlayer(player, amount);
-        notifyCompensationFailure(player, "retragerea recompensei", response);
+        notifyCompensationFailure(player, "kill reward reversal", response);
     }
 
     private void notifyCompensationFailure(Player player, String operation, EconomyResponse response) {
@@ -208,13 +208,13 @@ public final class CombatListener implements Listener {
             return;
         }
         plugin.messages().send(player, "economy-error");
-        plugin.getLogger().severe("Compensare Vault esuata la " + operation + " pentru "
+        plugin.getLogger().severe("Vault compensation failed during " + operation + " for "
                 + player.getName() + ": " + response.errorMessage);
     }
 
     private void notifyEconomyFailure(Player player, String operation, EconomyResponse response) {
         plugin.messages().send(player, "economy-error");
-        plugin.getLogger().warning("Tranzactie Vault esuata la " + operation + " pentru "
+        plugin.getLogger().warning("Vault transaction failed during " + operation + " for "
                 + player.getName() + ": " + response.errorMessage);
     }
 
@@ -226,7 +226,7 @@ public final class CombatListener implements Listener {
     private void logDatabaseError(String operation, Throwable error) {
         Throwable cause = error instanceof CompletionException && error.getCause() != null
                 ? error.getCause() : error;
-        plugin.getLogger().severe("Eroare MySQL la " + operation + ": " + cause.getMessage());
+        plugin.getLogger().severe("Database error during " + operation + ": " + cause.getMessage());
     }
 
     private record KillPair(UUID killer, UUID victim) {

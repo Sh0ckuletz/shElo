@@ -1,5 +1,5 @@
-# Regulile sunt verificate de sus in jos. Prima regula potrivita este folosita.
-# Operatori acceptati: >=, <=, >, <, = si ==
+# Rules are checked from top to bottom. The first matching rule is used.
+# Supported operators: >=, <=, >, <, = and ==
 config-version: 1
 
 default-format: '<gray>{elo}</gray>'

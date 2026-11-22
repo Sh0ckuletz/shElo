@@ -235,7 +235,7 @@ public final class MySqlEloStorage implements EloStorage {
                     select.setString(1, playerId.toString());
                     try (ResultSet result = select.executeQuery()) {
                         if (!result.next()) {
-                            throw new SQLException("Elo-ul jucatorului nu a putut fi actualizat");
+                            throw new SQLException("Player Elo could not be updated");
                         }
                         cachePlayer(playerId, result);
                         return result.getInt("elo");
@@ -267,7 +267,7 @@ public final class MySqlEloStorage implements EloStorage {
                     select.setString(1, playerId.toString());
                     try (ResultSet result = select.executeQuery()) {
                         if (!result.next()) {
-                            throw new SQLException("Jucatorul nu a putut fi initializat");
+                            throw new SQLException("Player could not be initialized");
                         }
                         currentElo = result.getInt("elo");
                         currentHighestElo = result.getInt("highest_elo");
@@ -399,7 +399,7 @@ public final class MySqlEloStorage implements EloStorage {
                     select.setString(1, playerId.toString());
                     try (ResultSet result = select.executeQuery()) {
                         if (!result.next()) {
-                            throw new SQLException("Statisticile jucatorului nu au putut fi initializate");
+                            throw new SQLException("Player stats could not be initialized");
                         }
                         return readStats(result);
                     }
@@ -499,7 +499,7 @@ public final class MySqlEloStorage implements EloStorage {
                 statement.setString(1, colorId);
                 statement.setString(2, playerId.toString());
                 if (statement.executeUpdate() == 0) {
-                    throw new SQLException("Jucatorul nu exista in baza de date");
+                    throw new SQLException("Player does not exist in the database");
                 }
             }
             selectedColorCache.put(playerId, colorId);

@@ -34,7 +34,7 @@ public final class EloColorManager {
             Object rawConditions = entry.get("conditions");
             Object rawFormat = entry.get("format");
             if (!(rawConditions instanceof List<?> conditions) || !(rawFormat instanceof String format)) {
-                plugin.getLogger().warning("Regula " + ruleNumber + " din colors.yml este invalida.");
+                plugin.getLogger().warning("Rule " + ruleNumber + " in colors.yml is invalid.");
                 continue;
             }
 
@@ -47,7 +47,7 @@ public final class EloColorManager {
                 }
                 IntPredicate predicate = parseCondition(condition);
                 if (predicate == null) {
-                    plugin.getLogger().warning("Conditie invalida in colors.yml: " + condition);
+                    plugin.getLogger().warning("Invalid condition in colors.yml: " + condition);
                     valid = false;
                     break;
                 }

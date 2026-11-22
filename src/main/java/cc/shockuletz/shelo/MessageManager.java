@@ -39,9 +39,9 @@ public final class MessageManager {
         if (messages.isConfigurationSection(key)) {
             usePrefix = messages.getBoolean(key + ".prefix", true);
             message = messages.getString(
-                    key + ".message", "<red>Mesaj lipsa: " + key + "</red>");
+                    key + ".message", "<red>Missing message: " + key + "</red>");
         } else {
-            message = messages.getString(key, "<red>Mesaj lipsa: " + key + "</red>");
+            message = messages.getString(key, "<red>Missing message: " + key + "</red>");
         }
         return renderRaw(receiver, (usePrefix ? prefix : "") + message, placeholders);
     }

@@ -23,8 +23,8 @@ import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public final class ShEloPlugin extends JavaPlugin {
-    // Inregistreaza pluginul pe https://bstats.org/plugin/bukkit si inlocuieste cu ID-ul primit.
-    // Atentie: nu pune zero-uri in fata (ex. 01234), Java il citeste ca octal.
+    // Plugin ID registered at https://bstats.org/plugin/bukkit.
+    // Do not use leading zeros (e.g. 01234); Java reads them as octal.
     private static final int BSTATS_PLUGIN_ID = 33167;
 
     private final AtomicBoolean reloadInProgress = new AtomicBoolean();
@@ -58,7 +58,7 @@ public final class ShEloPlugin extends JavaPlugin {
         colorMenu = new EloColorMenu(this);
 
         if (!setupEconomy()) {
-            getLogger().severe("Nu a fost gasit un provider de economie Vault. Pluginul va fi dezactivat.");
+            getLogger().severe("No Vault economy provider found. Disabling the plugin.");
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
@@ -67,7 +67,7 @@ public final class ShEloPlugin extends JavaPlugin {
         try {
             database = createStorage(databaseSettings);
         } catch (Exception exception) {
-            getLogger().severe("Conexiunea la baza de date nu a putut fi initializata: " + exception.getMessage());
+            getLogger().severe("Could not initialize the database connection: " + exception.getMessage());
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
@@ -80,7 +80,7 @@ public final class ShEloPlugin extends JavaPlugin {
 
         PluginCommand command = getCommand("elo");
         if (command == null) {
-            throw new IllegalStateException("Comanda elo lipseste din plugin.yml");
+            throw new IllegalStateException("Command elo is missing from plugin.yml");
         }
         EloCommand eloCommand = new EloCommand(this);
         command.setExecutor(eloCommand);
@@ -88,7 +88,7 @@ public final class ShEloPlugin extends JavaPlugin {
 
         PluginCommand statsCommand = getCommand("stats");
         if (statsCommand == null) {
-            throw new IllegalStateException("Comanda stats lipseste din plugin.yml");
+            throw new IllegalStateException("Command stats is missing from plugin.yml");
         }
         StatsCommand statsExecutor = new StatsCommand(this);
         statsCommand.setExecutor(statsExecutor);
@@ -96,13 +96,13 @@ public final class ShEloPlugin extends JavaPlugin {
 
         PluginCommand colorCommand = getCommand("elocolors");
         if (colorCommand == null) {
-            throw new IllegalStateException("Comanda elocolors lipseste din plugin.yml");
+            throw new IllegalStateException("Command elocolors is missing from plugin.yml");
         }
         colorCommand.setExecutor(new ColorMenuCommand(this));
 
         setupMetrics(databaseSettings);
 
-        getLogger().info("shElo a fost activat cu succes si conectat la baza de date ("
+        getLogger().info("shElo enabled and connected to the database ("
                 + databaseSettings.storageType() + ").");
     }
 
@@ -157,7 +157,7 @@ public final class ShEloPlugin extends JavaPlugin {
             replacementSettings = PluginSettings.from(candidate);
             replacementDatabaseSettings = DatabaseSettings.from(candidate);
         } catch (Exception exception) {
-            getLogger().severe("Configuratia noua nu a putut fi citita: " + exception.getMessage());
+            getLogger().severe("Could not read the new configuration: " + exception.getMessage());
             finishReload(result, ReloadResult.CONFIG_ERROR);
             return result;
         }
@@ -182,7 +182,7 @@ public final class ShEloPlugin extends JavaPlugin {
         try {
             replacement = createStorage(replacementDatabaseSettings);
         } catch (Exception exception) {
-            getLogger().severe("Noua conexiune la baza de date nu a putut fi initializata: " + exception.getMessage());
+            getLogger().severe("Could not initialize the new database connection: " + exception.getMessage());
             finishReload(result, ReloadResult.DATABASE_ERROR);
             return;
         }
@@ -190,7 +190,7 @@ public final class ShEloPlugin extends JavaPlugin {
         pendingReloadDatabase = replacement;
         try {
             int loadedPlayers = replacement.preloadAllPlayers().join();
-            getLogger().info("Cache-ul PlaceholderAPI a preincarcat " + loadedPlayers + " jucatori.");
+            getLogger().info("PlaceholderAPI cache preloaded " + loadedPlayers + " players.");
         } catch (CompletionException exception) {
             pendingReloadDatabase = null;
             replacement.close();
@@ -198,7 +198,7 @@ public final class ShEloPlugin extends JavaPlugin {
                 finishReload(result, ReloadResult.DISABLED);
             } else {
                 Throwable cause = exception.getCause() == null ? exception : exception.getCause();
-                getLogger().severe("Cache-ul Elo nu a putut fi preincarcat: " + cause.getMessage());
+                getLogger().severe("Could not preload the Elo cache: " + cause.getMessage());
                 finishReload(result, ReloadResult.DATABASE_ERROR);
             }
             return;
@@ -252,7 +252,7 @@ public final class ShEloPlugin extends JavaPlugin {
             moneyFormatter = oldMoneyFormatter;
             pendingReloadDatabase = null;
             closeDatabaseAsync(replacement);
-            getLogger().severe("Configuratia nu a putut fi aplicata: " + exception.getMessage());
+            getLogger().severe("Could not apply the configuration: " + exception.getMessage());
             finishReload(result, ReloadResult.CONFIG_ERROR);
         }
     }
@@ -311,7 +311,7 @@ public final class ShEloPlugin extends JavaPlugin {
             ConfigUpdater.update(this, "menus.yml");
             return true;
         } catch (Exception exception) {
-            getLogger().severe("Configuratiile nu au putut fi actualizate: " + exception.getMessage());
+            getLogger().severe("Could not update the configuration files: " + exception.getMessage());
             return false;
         }
     }
@@ -320,7 +320,7 @@ public final class ShEloPlugin extends JavaPlugin {
         try {
             moneyFormatter = new DecimalFormat(settings.moneyFormat(), DecimalFormatSymbols.getInstance(Locale.US));
         } catch (IllegalArgumentException exception) {
-            getLogger().warning("money-format invalid; se foloseste formatul implicit #,##0.##");
+            getLogger().warning("Invalid money-format; using the default format #,##0.##");
             moneyFormatter = new DecimalFormat("#,##0.##", DecimalFormatSymbols.getInstance(Locale.US));
         }
     }
@@ -377,7 +377,7 @@ public final class ShEloPlugin extends JavaPlugin {
             if (error != null) {
                 Throwable cause = error instanceof CompletionException && error.getCause() != null
                         ? error.getCause() : error;
-                getLogger().severe("Cache-ul PlaceholderAPI nu a putut fi preincarcat: "
+                getLogger().severe("Could not preload the PlaceholderAPI cache: "
                         + cause.getMessage());
             }
             runSync(() -> {
@@ -386,8 +386,8 @@ public final class ShEloPlugin extends JavaPlugin {
                 }
                 registerPlaceholderApiIfNeeded();
                 if (error == null) {
-                    getLogger().info("Cache-ul PlaceholderAPI a preincarcat "
-                            + loadedPlayers + " jucatori.");
+                    getLogger().info("PlaceholderAPI cache preloaded "
+                            + loadedPlayers + " players.");
                 }
             });
         });
@@ -404,7 +404,7 @@ public final class ShEloPlugin extends JavaPlugin {
         for (Player player : getServer().getOnlinePlayers()) {
             database.ensurePlayer(player.getUniqueId(), player.getName(), settings.startingElo())
                     .exceptionally(error -> {
-                        getLogger().warning("Cache-ul Elo nu a putut fi incarcat pentru "
+                        getLogger().warning("Could not load the Elo cache for "
                                 + player.getName() + ": " + error.getMessage());
                         return null;
                     });
