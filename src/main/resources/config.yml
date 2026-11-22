@@ -1,0 +1,69 @@
+# Mareste aceasta valoare doar cand structura implicita a configuratiei este actualizata.
+config-version: 9
+
+# AUTOMATIC foloseste colors.yml; MENU permite alegerea culorii din /elocolors.
+color-system:
+  mode: 'AUTOMATIC'
+  notify-on-threshold-loss: true
+
+# In aceste lumi nu se acorda bani/Elo si nu se aplica penalizari.
+# Numele lumilor sunt verificate fara diferenta intre litere mari si mici.
+combat:
+  disabled-worlds: []
+
+# Numarul de pozitii afisate de /elo top pe fiecare pagina (1-50).
+leaderboard:
+  entries-per-page: 10
+
+# Protectie impotriva kill-urilor repetate pe acelasi jucator.
+# Afecteaza recompensa killerului; penalizarea victimei ramane activa.
+anti-farm:
+  enabled: true
+  cooldown-seconds: 300
+  # BLOCK opreste recompensa; REDUCE acorda procentul de mai jos.
+  mode: 'BLOCK'
+  reduction-percent: 50
+
+# Elo primit de jucatorul care face kill-ul.
+kill:
+  money: 300.0
+  elo: 30
+  broadcast: true
+
+# Penalizarea aplicata victimei in lumile active, indiferent de cauza mortii.
+death:
+  money: 50.0
+  elo: 10
+
+elo:
+  starting-value: 1000
+  minimum-value: 0
+
+# Format folosit pentru sumele introduse in mesajele MiniMessage.
+money-format: '#,##0.##'
+
+database:
+  # MYSQL necesita un server extern; SQLITE salveaza totul intr-un singur fisier local
+  # in directorul pluginului si nu necesita nicio configurare suplimentara.
+  storage-type: 'MYSQL'
+
+  # Folosit doar cand storage-type este SQLITE. Doar numele fisierului, fara cai.
+  sqlite:
+    file: 'shelo.db'
+
+  # Urmatoarele chei sunt folosite doar cand storage-type este MYSQL.
+  host: '127.0.0.1'
+  port: 3306
+  name: 'minecraft'
+  username: 'root'
+  password: 'schimba-ma'
+  table: 'shelo_players'
+  use-ssl: false
+  allow-public-key-retrieval: true
+
+  pool:
+    maximum-size: 10
+    minimum-idle: 2
+    connection-timeout-ms: 10000
+    max-lifetime-ms: 1800000
+    keepalive-time-ms: 0

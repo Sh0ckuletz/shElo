@@ -1,0 +1,62 @@
+name: shElo
+version: '${version}'
+main: cc.shockuletz.shelo.ShEloPlugin
+api-version: '1.21.11'
+author: Sh0ckuletz
+description: Recompense economice si Elo pentru luptele PvP.
+depend: [Vault]
+softdepend: [PlaceholderAPI]
+
+commands:
+  elo:
+    description: Afiseaza sau administreaza Elo-ul si reincarca pluginul.
+    usage: /elo [jucator|top|reload|set|add|remove|reset]
+    permission: shelo.command
+  stats:
+    description: Afiseaza statisticile PvP.
+    usage: /stats [jucator]
+    permission: shelo.stats
+  elocolors:
+    description: Deschide meniul culorilor Elo.
+    usage: /elocolors
+    permission: shelo.colors
+
+permissions:
+  shelo.command:
+    description: Permite folosirea comenzii /elo.
+    default: true
+  shelo.stats:
+    description: Permite folosirea comenzii /stats.
+    default: true
+  shelo.stats.others:
+    description: Permite vizualizarea statisticilor altor jucatori.
+    default: true
+  shelo.top:
+    description: Permite vizualizarea clasamentului Elo.
+    default: true
+  shelo.reload:
+    description: Permite reincarcarea configuratiei shElo.
+    default: op
+  shelo.admin:
+    description: Permite toate comenzile administrative Elo.
+    default: op
+    children:
+      shelo.admin.set: true
+      shelo.admin.add: true
+      shelo.admin.remove: true
+      shelo.admin.reset: true
+  shelo.admin.set:
+    description: Permite setarea Elo-ului unui jucator.
+    default: op
+  shelo.admin.add:
+    description: Permite adaugarea de Elo unui jucator.
+    default: op
+  shelo.admin.remove:
+    description: Permite scaderea Elo-ului unui jucator.
+    default: op
+  shelo.admin.reset:
+    description: Permite resetarea Elo-ului unui jucator.
+    default: op
+  shelo.colors:
+    description: Permite deschiderea meniului de culori Elo.
+    default: true

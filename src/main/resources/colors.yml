@@ -1,0 +1,24 @@
+# Regulile sunt verificate de sus in jos. Prima regula potrivita este folosita.
+# Operatori acceptati: >=, <=, >, <, = si ==
+config-version: 1
+
+default-format: '<gray>{elo}</gray>'
+
+rules:
+  - conditions:
+      - '>= 2000'
+    format: '<gradient:#ff4d4d:#ffd700><bold>{elo}</bold></gradient>'
+
+  - conditions:
+      - '>= 1500'
+      - '<= 1999'
+    format: '<aqua>{elo}</aqua>'
+
+  - conditions:
+      - '>= 1000'
+      - '<= 1499'
+    format: '<green>{elo}</green>'
+
+  - conditions:
+      - '<= 999'
+    format: '<gray>{elo}</gray>'

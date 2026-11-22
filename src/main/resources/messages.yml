@@ -1,0 +1,49 @@
+# Toate mesajele accepta MiniMessage si orice placeholder PlaceholderAPI.
+# Placeholdere incluse de shElo: %shelo_elo% si %shelo_elo_formatted%
+# https://docs.advntr.dev/minimessage/format.html
+
+# Folosit de updater pentru a adauga automat mesajele noi.
+config-version: 12
+
+prefix: '<gradient:#ffb347:#ff5f6d><bold>shElo</bold></gradient> <dark_gray>»</dark_gray> '
+
+kill: '<green>L-ai eliminat pe <white><player></white>! Ai primit <gold><money>$</gold> si <yellow><elo> Elo</yellow>. <gray>Elo: <white>%shelo_elo%</white></gray>'
+# prefix: true adauga prefix-ul global; false trimite doar mesajul.
+kill-broadcast:
+  prefix: true
+  message: '<red><killer></red> <gray>l-a eliminat pe</gray> <white><victim></white><gray>!</gray> <dark_gray>(</dark_gray><yellow><killer_elo> Elo</yellow><dark_gray>)</dark_gray>'
+anti-farm-blocked: '<red>Nu ai primit recompensa pentru <white><player></white>: kill repetat. Incearca peste <white><remaining_seconds>s</white>.</red>'
+anti-farm-reduced: '<yellow>Recompensa a fost redusa la <white><percentage>%</white> din cauza unui kill repetat. Cooldown: <white><remaining_seconds>s</white>.</yellow>'
+death-player: '<red>Ai fost eliminat de <white><killer></white>! Ai pierdut <gold><money>$</gold> si <yellow><elo> Elo</yellow>. <gray>Elo: <white>%shelo_elo%</white></gray>'
+death-other: '<red>Ai murit! Ai pierdut <gold><money>$</gold> si <yellow><elo> Elo</yellow>. <gray>Elo: <white>%shelo_elo%</white></gray>'
+economy-error: '<red>Tranzactia economica nu a putut fi efectuata. Contacteaza un administrator.</red>'
+database-error: '<red>Baza de date nu este disponibila momentan. Incearca din nou.</red>'
+
+elo-self: '<gray>Elo-ul tau este <yellow><elo></yellow>.</gray>'
+elo-other: '<gray>Elo-ul jucatorului <white><player></white> este <yellow><elo></yellow>.</gray>'
+player-not-found: '<red>Jucatorul <white><player></white> nu a fost gasit.</red>'
+no-permission: '<red>Nu ai permisiunea necesara.</red>'
+reload-start: '<yellow>Se verifica configuratia si se deschide noua conexiune MySQL...</yellow>'
+reload: '<green>Configuratia, mesajele si conexiunea MySQL au fost reincarcate.</green>'
+reload-in-progress: '<yellow>Un reload shElo este deja in desfasurare.</yellow>'
+reload-config-error: '<red>Configuratia noua este invalida. Setarile active au ramas neschimbate.</red>'
+reload-error: '<red>Noua conexiune MySQL nu a putut fi deschisa. Conexiunea veche ramane activa.</red>'
+player-only: '<red>Aceasta comanda poate fi folosita doar de un jucator.</red>'
+color-menu-disabled: '<red>Meniul de culori este dezactivat. Seteaza color-system.mode pe MENU.</red>'
+color-locked: '<red>Aceasta culoare necesita <white><required_elo> Elo</white>. Elo-ul tau actual este <white><current_elo></white>.</red>'
+color-selected: '<green>Ai selectat culoarea <white><color></white>.</green>'
+color-threshold-lost: '<red>Ai scazut sub <white><required_elo> Elo</white>. Culoarea <white><color></white> a fost dezactivata.</red>'
+stats-self: '<gradient:#ffb347:#ff5f6d><bold>Statisticile tale PvP</bold></gradient><newline><gray>Peak Elo: <peak_elo_formatted> <yellow>Elo</yellow></gray><newline><gray>Kills: <green><kills></green> <dark_gray>|</dark_gray> Deaths: <red><deaths></red> <dark_gray>|</dark_gray> K/D: <yellow><kd></yellow></gray><newline><gray>Streak: <aqua><streak></aqua> <dark_gray>|</dark_gray> Best streak: <gold><best_streak></gold></gray>'
+stats-other: '<gradient:#ffb347:#ff5f6d><bold>Statistici PvP: <player></bold></gradient><newline><gray>Peak Elo: <peak_elo_formatted> <yellow>Elo</yellow></gray><newline><gray>Kills: <green><kills></green> <dark_gray>|</dark_gray> Deaths: <red><deaths></red> <dark_gray>|</dark_gray> K/D: <yellow><kd></yellow></gray><newline><gray>Streak: <aqua><streak></aqua> <dark_gray>|</dark_gray> Best streak: <gold><best_streak></gold></gray>'
+stats-usage: '<gray>Folosire: <white>/stats [jucator]</white></gray>'
+leaderboard-header: '<gradient:#ffb347:#ff5f6d><bold>Clasament Elo</bold></gradient> <gray>- Pagina <white><page>/<pages></white> (<total_players> jucatori)</gray>'
+leaderboard-entry: '<dark_gray>#<rank></dark_gray> <white><player></white> <gray>-</gray> <elo_formatted> <yellow>Elo</yellow>'
+leaderboard-footer: '<gray>Anterior: <white>/elo top <previous_page></white> <dark_gray>|</dark_gray> Urmator: <white>/elo top <next_page></white></gray>'
+leaderboard-empty: '<yellow>Clasamentul Elo este gol.</yellow>'
+leaderboard-invalid-page: '<red>Pagina <white><page></white> nu exista. Pagina maxima: <white><max_page></white>.</red>'
+leaderboard-usage: '<gray>Folosire: <white>/elo top [pagina]</white></gray>'
+admin-update: '<green>Ai <action> Elo-ul jucatorului <white><player></white>. Noul Elo: <yellow><new_elo></yellow>.</green>'
+admin-target-update: '<yellow>Un administrator ti-a modificat Elo-ul. Noul Elo: <white><new_elo></white>.</yellow>'
+admin-invalid-number: '<red>Valoarea Elo trebuie sa fie un numar intreg pozitiv sau zero.</red>'
+admin-usage: '<gray>Folosire: <white>/elo set|add|remove <jucator> <valoare></white> sau <white>/elo reset <jucator></white>.</gray>'
+usage: '<gray>Folosire: <white>/elo [jucator|reload|set|add|remove|reset]</white></gray>'
