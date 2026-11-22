@@ -2,7 +2,7 @@
 # A color is only available while the current Elo meets its threshold.
 config-version: 2
 
-title: '<gradient:#5e98d9:#ffd700><bold>CS PREMIER RATING</bold></gradient>'
+title: '<gradient:#ffb347:#ff5f6d><bold>Elo Colors</bold></gradient>'
 size: 27
 default-format: '<#b0b0b0><bold>{elo}</bold></#b0b0b0>'
 
@@ -26,9 +26,9 @@ colors:
     material: 'GRAY_DYE'
     name: '<#b0b0b0><bold>GRAY</bold></#b0b0b0> <dark_gray>| 0 - 4,999</dark_gray>'
     lore:
-      - '<dark_gray>Premier Rating Tier</dark_gray>'
-      - '<gray>Minimum rating:<white><required_elo></white></gray>'
-      - '<gray>Current rating:<white><current_elo></white></gray>'
+      - '<dark_gray>Elo tier</dark_gray>'
+      - '<gray>Requires <white><required_elo> Elo</white></gray>'
+      - '<gray>Your Elo <white><current_elo></white></gray>'
       - ''
       - '<status>'
     format: '<#b0b0b0><bold>{elo}</bold></#b0b0b0>'
@@ -39,9 +39,9 @@ colors:
     material: 'LIGHT_BLUE_DYE'
     name: '<#5e98d9><bold>LIGHT BLUE</bold></#5e98d9> <dark_gray>| 5,000 - 9,999</dark_gray>'
     lore:
-      - '<dark_gray>Premier Rating Tier</dark_gray>'
-      - '<gray>Minimum rating:<white><required_elo></white></gray>'
-      - '<gray>Current rating:<white><current_elo></white></gray>'
+      - '<dark_gray>Elo tier</dark_gray>'
+      - '<gray>Requires <white><required_elo> Elo</white></gray>'
+      - '<gray>Your Elo <white><current_elo></white></gray>'
       - ''
       - '<status>'
     format: '<#5e98d9><bold>{elo}</bold></#5e98d9>'
@@ -52,9 +52,9 @@ colors:
     material: 'BLUE_DYE'
     name: '<#4b69ff><bold>BLUE</bold></#4b69ff> <dark_gray>| 10,000 - 14,999</dark_gray>'
     lore:
-      - '<dark_gray>Premier Rating Tier</dark_gray>'
-      - '<gray>Minimum rating:<white><required_elo></white></gray>'
-      - '<gray>Current rating:<white><current_elo></white></gray>'
+      - '<dark_gray>Elo tier</dark_gray>'
+      - '<gray>Requires <white><required_elo> Elo</white></gray>'
+      - '<gray>Your Elo <white><current_elo></white></gray>'
       - ''
       - '<status>'
     format: '<#4b69ff><bold>{elo}</bold></#4b69ff>'
@@ -65,9 +65,9 @@ colors:
     material: 'PURPLE_DYE'
     name: '<#8847ff><bold>PURPLE</bold></#8847ff> <dark_gray>| 15,000 - 19,999</dark_gray>'
     lore:
-      - '<dark_gray>Premier Rating Tier</dark_gray>'
-      - '<gray>Minimum rating:<white><required_elo></white></gray>'
-      - '<gray>Current rating:<white><current_elo></white></gray>'
+      - '<dark_gray>Elo tier</dark_gray>'
+      - '<gray>Requires <white><required_elo> Elo</white></gray>'
+      - '<gray>Your Elo <white><current_elo></white></gray>'
       - ''
       - '<status>'
     format: '<#8847ff><bold>{elo}</bold></#8847ff>'
@@ -78,9 +78,9 @@ colors:
     material: 'MAGENTA_DYE'
     name: '<#d32ce6><bold>PINK</bold></#d32ce6> <dark_gray>| 20,000 - 24,999</dark_gray>'
     lore:
-      - '<dark_gray>Premier Rating Tier</dark_gray>'
-      - '<gray>Minimum rating:<white><required_elo></white></gray>'
-      - '<gray>Current rating:<white><current_elo></white></gray>'
+      - '<dark_gray>Elo tier</dark_gray>'
+      - '<gray>Requires <white><required_elo> Elo</white></gray>'
+      - '<gray>Your Elo <white><current_elo></white></gray>'
       - ''
       - '<status>'
     format: '<#d32ce6><bold>{elo}</bold></#d32ce6>'
@@ -91,9 +91,9 @@ colors:
     material: 'RED_DYE'
     name: '<#eb4b4b><bold>RED</bold></#eb4b4b> <dark_gray>| 25,000 - 29,999</dark_gray>'
     lore:
-      - '<dark_gray>Premier Rating Tier</dark_gray>'
-      - '<gray>Minimum rating:<white><required_elo></white></gray>'
-      - '<gray>Current rating:<white><current_elo></white></gray>'
+      - '<dark_gray>Elo tier</dark_gray>'
+      - '<gray>Requires <white><required_elo> Elo</white></gray>'
+      - '<gray>Your Elo <white><current_elo></white></gray>'
       - ''
       - '<status>'
     format: '<#eb4b4b><bold>{elo}</bold></#eb4b4b>'
@@ -104,9 +104,9 @@ colors:
     material: 'YELLOW_DYE'
     name: '<gradient:#f5c542:#ffd700><bold>GOLD</bold></gradient> <dark_gray>| 30,000+</dark_gray>'
     lore:
-      - '<dark_gray>Premier Rating Tier</dark_gray>'
-      - '<gray>Minimum rating:<white><required_elo></white></gray>'
-      - '<gray>Current rating:<white><current_elo></white></gray>'
+      - '<dark_gray>Elo tier</dark_gray>'
+      - '<gray>Requires <white><required_elo> Elo</white></gray>'
+      - '<gray>Your Elo <white><current_elo></white></gray>'
       - ''
       - '<status>'
     format: '<gradient:#f5c542:#ffd700><bold>{elo}</bold></gradient>'

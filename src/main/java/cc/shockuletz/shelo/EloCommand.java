@@ -95,6 +95,11 @@ public final class EloCommand implements CommandExecutor, TabCompleter {
         return true;
     }
 
+    private static String rankFormat(long rank) {
+        String color = rank == 1 ? "#ffd700" : rank == 2 ? "#c0c0c0" : rank == 3 ? "#cd7f32" : "#6b6b6b";
+        return "<color:" + color + ">#" + rank + "</color>";
+    }
+
     private void handleLeaderboard(CommandSender sender, String[] args) {
         if (!sender.hasPermission("shelo.top")) {
             plugin.messages().send(sender, "no-permission");
@@ -150,6 +155,7 @@ public final class EloCommand implements CommandExecutor, TabCompleter {
                         EloStorage.LeaderboardEntry entry = leaderboard.entries().get(index);
                         plugin.messages().send(sender, "leaderboard-entry",
                                 MessageManager.text("rank", Long.toString(firstRank + index)),
+                                MessageManager.parsed("rank_formatted", rankFormat(firstRank + index)),
                                 MessageManager.text("player", entry.name()),
                                 MessageManager.text("elo", Integer.toString(entry.elo())),
                                 MessageManager.parsed("elo_formatted",

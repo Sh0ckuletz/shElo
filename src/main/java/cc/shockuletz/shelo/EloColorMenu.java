@@ -34,9 +34,9 @@ public final class EloColorMenu implements Listener {
     private boolean fillerEnabled;
     private Material fillerMaterial = Material.GRAY_STAINED_GLASS_PANE;
     private String fillerName = " ";
-    private String selectedStatus = "<green>Selectata</green>";
+    private String selectedStatus = "<green>Selected</green>";
     private String unlockedStatus = "<yellow>Click to select</yellow>";
-    private String lockedStatus = "<red>Blocata</red>";
+    private String lockedStatus = "<red>Locked</red>";
 
     public EloColorMenu(ShEloPlugin plugin) {
         this.plugin = plugin;
@@ -52,9 +52,9 @@ public final class EloColorMenu implements Listener {
         fillerEnabled = config.getBoolean("filler.enabled", true);
         fillerMaterial = material(config.getString("filler.material", "GRAY_STAINED_GLASS_PANE"));
         fillerName = config.getString("filler.name", " ");
-        selectedStatus = config.getString("status.selected", "<green>Selectata</green>");
+        selectedStatus = config.getString("status.selected", "<green>Selected</green>");
         unlockedStatus = config.getString("status.unlocked", "<yellow>Click to select</yellow>");
-        lockedStatus = config.getString("status.locked", "<red>Blocata</red>");
+        lockedStatus = config.getString("status.locked", "<red>Locked</red>");
 
         Map<String, MenuColor> loaded = new LinkedHashMap<>();
         ConfigurationSection section = config.getConfigurationSection("colors");

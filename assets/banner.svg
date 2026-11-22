@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="280" viewBox="0 0 1200 280" role="img" aria-label="shElo">
+  <defs>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffb347"/>
+      <stop offset="1" stop-color="#ff5f6d"/>
+    </linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#14161c"/>
+      <stop offset="1" stop-color="#0d0f13"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="280" rx="16" fill="url(#bg)"/>
+  <rect x="0" y="0" width="8" height="280" rx="4" fill="url(#accent)"/>
+  <text x="80" y="132" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="92" font-weight="700" fill="url(#accent)">shElo</text>
+  <text x="84" y="186" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="30" fill="#c9ced6">Economy rewards and Elo ratings for PvP</text>
+  <text x="84" y="232" font-family="'Consolas', 'Courier New', monospace" font-size="20" fill="#6b7280">Paper 1.21.11  ·  Java 21  ·  Vault  ·  MySQL / SQLite</text>
+  <g font-family="'Consolas', 'Courier New', monospace" font-size="22">
+    <text x="800" y="96" fill="#ffd700">#1  <tspan fill="#e6e8ec">Steve</tspan><tspan fill="#6b7280">  -  </tspan><tspan fill="#ff7a7a">2140</tspan></text>
+    <text x="800" y="132" fill="#c0c0c0">#2  <tspan fill="#e6e8ec">Alex</tspan><tspan fill="#6b7280">   -  </tspan><tspan fill="#6ad6ff">1730</tspan></text>
+    <text x="800" y="168" fill="#cd7f32">#3  <tspan fill="#e6e8ec">Herobrine</tspan><tspan fill="#6b7280">  -  </tspan><tspan fill="#6ad6ff">1522</tspan></text>
+    <text x="800" y="204" fill="#6b6b6b">#4  <tspan fill="#e6e8ec">Notch</tspan><tspan fill="#6b7280">  -  </tspan><tspan fill="#7bd88f">1180</tspan></text>
+  </g>
+</svg>
